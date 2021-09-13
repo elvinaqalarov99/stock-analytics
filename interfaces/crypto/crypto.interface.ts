@@ -1,4 +1,4 @@
-export default interface Crypto {
+export interface ICrypto {
   id: number;
   cmc_rank: number;
   date_added: string;
