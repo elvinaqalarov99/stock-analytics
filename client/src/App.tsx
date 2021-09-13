@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Crypto from "../../interfaces/crypto";
+import Crypto from "../../interfaces/cryptos/crypto.interface";
 import "./App.css";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("/api");
+        const { data } = await axios.get("/cryptos");
         setCryptos(cryptos);
         console.log(data);
       } catch (error) {
@@ -22,7 +22,7 @@ function App() {
         }
       }
     };
-
+    // fetchData();
     const interval = setInterval(fetchData, FIVE_MINUTES_MS);
 
     return () => clearInterval(interval);
