@@ -4,5 +4,4 @@ export interface ICrypto {
   date_added: string;
   name: string;
   circulating_supply: number;
-  quote: object;
 }

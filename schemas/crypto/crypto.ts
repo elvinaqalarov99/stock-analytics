@@ -10,7 +10,6 @@ const CryptoSchema = new Schema<ICrypto>(
     circulating_supply: { type: Number, required: true },
     date_added: { type: String, required: true },
     cmc_rank: { type: Number, required: true },
-    quote: { type: Object, required: true },
   },
   { timestamps: true }
 );

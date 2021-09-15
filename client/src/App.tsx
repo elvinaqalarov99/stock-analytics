@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Crypto from "../../interfaces/cryptos/crypto.interface";
+import { ICrypto } from "../../interfaces/crypto/crypto.interface";
 import "./App.css";
 
 function App() {
-  const [cryptos, setCryptos] = useState<Crypto | []>([]);
+  const [cryptos, setCryptos] = useState<ICrypto | []>([]);
 
   useEffect(() => {
     const FIVE_MINUTES_MS = 60000 * 5;
