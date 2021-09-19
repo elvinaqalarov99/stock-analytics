@@ -1,7 +1,7 @@
-import React from "react";
+import { IChildren } from "../../../interfaces/children.interface";
 import "./Fallback.scss";
 
-const Fallback = ({ children }: { children: JSX.Element }) => {
+const Fallback = ({ children }: IChildren) => {
   return <div className="spinner-container">{children}</div>;
 };
 
