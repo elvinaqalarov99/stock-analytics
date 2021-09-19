@@ -3,7 +3,7 @@ import { IChildren } from "../../../interfaces/children.interface";
 const Layout = ({ children }: IChildren) => {
   return (
     <>
-      <main id="main">{children}</main>
+      <main className="container py-3">{children}</main>
     </>
   );
 };

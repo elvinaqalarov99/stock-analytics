@@ -3,8 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 import Fallback from "./Fallback/Fallback";
 
-const Home = lazy(() => import("../../pages/Home/Home"));
-const Error404 = lazy(() => import("../../pages/Error404/Error404"));
+const Home = lazy(() => import("../../pages/Home/HomePage"));
+const Crypto = lazy(() => import("../../pages/Crypto/CryptoPage"));
+const Error404 = lazy(() => import("../../pages/Error404/Error404Page"));
 
 export default function Routes() {
   return (
@@ -18,6 +19,17 @@ export default function Routes() {
           }
         >
           <Home />
+        </Suspense>
+      </Route>
+      <Route path="/cryptos/:id">
+        <Suspense
+          fallback={
+            <Fallback>
+              <Spinner />
+            </Fallback>
+          }
+        >
+          <Crypto />
         </Suspense>
       </Route>
       <Route>

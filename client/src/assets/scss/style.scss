@@ -1,0 +1,16 @@
+body {
+  background: $bgColor;
+}
+
+* {
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+  font-family: "Poppins";
+  vertical-align: baseline;
+  color: $color;
+  list-style: none !important;
+}
+
+.disabled-link {
+  pointer-events: none;
+}

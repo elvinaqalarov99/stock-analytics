@@ -1,0 +1,20 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+@import "./variables";
+
+// General styles
+@import "./style.scss";
+
+// Layout styles
+@import "../../components/_Other/Layout/Layout.scss";
+
+// Components' styles
+@import "../../components/_Other/Fallback/Fallback.scss";
+@import "../../components/_Other/Layout/Layout.scss";
+@import "../../components/Spinner/Spinner.scss";
+@import "../../components/Card/Card.scss";
+
+// Pages' styles
+@import "../../pages/Home/HomePage.scss";
+@import "../../pages/Error404/Error404Page.scss";
+@import "../../pages/Crypto/CryptoPage.scss";

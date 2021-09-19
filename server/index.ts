@@ -40,5 +40,5 @@ app.use(cors());
 app.use(express.json());
 
 //cryptos routes enabled
-app.use("/cryptos", cryptos);
-app.use("/quotes", quotes);
+app.use("/api/cryptos", cryptos);
+app.use("/api/quotes", quotes);

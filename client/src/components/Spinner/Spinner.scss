@@ -1,9 +1,9 @@
 .loader {
-  border: 8px solid blue;
-  border-top: 8px solid red;
+  border: 5px solid $bgColor;
+  border-top: 5px solid $color;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   animation: spin-loader 2s linear infinite;
 }
 @keyframes spin-loader {
