@@ -1,0 +1,16 @@
+.loader {
+  border: 8px solid blue;
+  border-top: 8px solid red;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin-loader 2s linear infinite;
+}
+@keyframes spin-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
