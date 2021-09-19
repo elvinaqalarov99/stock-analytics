@@ -1,6 +1,9 @@
 export const ACTION_TYPES = {
-  setCurrentUser: 1,
-  setTheme: 2,
+  setCrypto: 1,
 };
 
-export default class Actions {}
+export default class Actions {
+  static setCryptos(cryptos: []) {
+    return { type: ACTION_TYPES.setCrypto, payload: cryptos };
+  }
+}
