@@ -6,6 +6,7 @@ import { IQuote } from "../../../../interfaces/quote/quote.interface";
 import Spinner from "../../components/Spinner/Spinner";
 import ChartLine from "../../components/Charts/ChartLine";
 import useStateManagement from "../../StateManagement/StateManagement";
+import Fallback from "../../components/_Other/Fallback/Fallback";
 
 const Crypto = () => {
   let { id }: any = useParams();
@@ -20,30 +21,41 @@ const Crypto = () => {
   const [quotes, setQuotes] = useState<IQuote[]>([]);
 
   useEffect(() => {
-    if (loading) {
-      (async () => {
-        try {
-          const response = await axios.get(URLS.quotes.base + id);
-          if (response.status === 200 && response.data) {
-            setQuotes(response.data);
-          } else {
-            setErrors(
-              response.data.errors || [
-                "Something went wrong while fetching user data from Node Api",
-              ]
-            );
-          }
-        } catch (e: any) {
-          setErrors([e.message]);
-        } finally {
-          setLoading(false);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(URLS.quotes.base + id);
+        if (response.status === 200 && response.data) {
+          setQuotes(response.data);
+        } else {
+          setErrors(
+            response.data.errors || [
+              "Something went wrong while fetching user data from Node Api",
+            ]
+          );
         }
-      })();
+      } catch (e: any) {
+        setErrors([e.message]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (loading) {
+      fetchData();
     }
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, 1000 * 60 * 8);
+
+    return () => clearInterval(interval);
   }, [id, loading]);
 
   return loading ? (
-    <Spinner />
+    <Fallback>
+      <Spinner />
+    </Fallback>
   ) : errors && errors.length ? (
     <ErrorsList errors={errors} />
   ) : (

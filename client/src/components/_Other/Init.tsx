@@ -13,26 +13,34 @@ export default function Init({ children }: IChildren) {
   const { dispatch } = useStateManagement();
 
   useEffect(() => {
-    if (loading) {
-      (async () => {
-        try {
-          const response = await axios.get(URLS.cryptos.base);
-          if (response.status === 200 && response.data) {
-            dispatch(Actions.setCryptos(response.data));
-          } else {
-            setErrors(
-              response.data.errors || [
-                "Something went wrong while fetching user data from Node Api",
-              ]
-            );
-          }
-        } catch (e: any) {
-          setErrors([e.message]);
-        } finally {
-          setLoading(false);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(URLS.cryptos.base);
+        if (response.status === 200 && response.data) {
+          dispatch(Actions.setCryptos(response.data));
+        } else {
+          setErrors(
+            response.data.errors || [
+              "Something went wrong while fetching user data from Node Api",
+            ]
+          );
         }
-      })();
+      } catch (e: any) {
+        setErrors([e.message]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (loading) {
+      fetchData();
     }
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, 1000 * 60 * 8);
+
+    return () => clearInterval(interval);
   }, [dispatch, loading]);
 
   return loading ? (
