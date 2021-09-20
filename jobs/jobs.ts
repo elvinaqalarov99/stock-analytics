@@ -8,6 +8,6 @@ export const fetchCryptosHandler = () =>
   });
 
 export const deleteOldQuotesHanlder = () =>
-  cron.schedule("0 0 0 * *", async () => {
+  cron.schedule("0 0 0 * *", () => {
     deleteOldQuotes();
   });
