@@ -7,7 +7,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="row" id="home">
+      <div className="row text-center" id="home">
+        <h1>Cryptocurrencies</h1>
         {state.cryptos.map((crypto: ICrypto) => (
           <Card
             key={crypto.id}
