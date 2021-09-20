@@ -6,7 +6,7 @@ const router: Router = express.Router();
 router.get("/:cryptoId", async (req: Request, res: Response) => {
   res.json(
     await Quote.find({ crypto_id: +req.params.cryptoId }).sort({
-      last_updated: -1,
+      last_updated: 1,
     })
   );
 });
