@@ -86,7 +86,7 @@ const Crypto = () => {
             width={30}
             height={30}
           />
-          {crypto.name}
+          {crypto.name} ({crypto.symbol})
         </h3>
         <p>{new Date(crypto.date_added).toDateString()}</p>
         <p>Rank: {crypto.cmc_rank}</p>

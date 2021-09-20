@@ -33,7 +33,7 @@ const Crypto = ({
                 width={30}
                 height={30}
               />
-              {name}
+              {name} ({symbol})
             </h5>
             <p className="card-text mb-1">Rank: {cmc}</p>
             <p className="card-text mb-1">
