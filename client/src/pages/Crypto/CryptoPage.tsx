@@ -7,6 +7,8 @@ import Spinner from "../../components/Spinner/Spinner";
 import ChartLine from "../../components/Charts/ChartLine";
 import useStateManagement from "../../StateManagement/StateManagement";
 import Fallback from "../../components/_Other/Fallback/Fallback";
+import { Link } from "react-router-dom";
+import { BsArrowLeft } from "react-icons/bs";
 
 const Crypto = () => {
   let { id }: any = useParams();
@@ -14,17 +16,22 @@ const Crypto = () => {
 
   const crypto = state?.cryptos?.find(
     (crypto: { id: any }) => crypto.id === +id
-  )?.name;
+  );
 
   const [loading, setLoading] = useState<boolean>(true);
   const [errors, setErrors] = useState<any>(null);
   const [quotes, setQuotes] = useState<IQuote[]>([]);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
+    let isMounted = true;
+
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(URLS.quotes.base + id);
+        const response = await axios.get(URLS.quotes.base + id, {
+          cancelToken: source.token,
+        });
         if (response.status === 200 && response.data) {
           setQuotes(response.data);
         } else {
@@ -35,9 +42,11 @@ const Crypto = () => {
           );
         }
       } catch (e: any) {
-        setErrors([e.message]);
+        if (!axios.isCancel(e)) {
+          setErrors([e.message]);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
@@ -49,7 +58,11 @@ const Crypto = () => {
       fetchData();
     }, 1000 * 60 * 8);
 
-    return () => clearInterval(interval);
+    return () => {
+      source.cancel();
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, [id, loading]);
 
   return loading ? (
@@ -59,8 +72,25 @@ const Crypto = () => {
   ) : errors && errors.length ? (
     <ErrorsList errors={errors} />
   ) : (
-    <div className="row h-100 d-flex justify-content-center align-items-center">
-      <h3 className="text-center mb-4">{crypto}</h3>
+    <div className="row h-100 text-center d-flex justify-content-center align-items-center">
+      <div className="mb-4">
+        <h3>
+          {" "}
+          <Link to="/" title="Back">
+            <BsArrowLeft color="rgba(0, 212, 255, 1)" />
+          </Link>{" "}
+          <img
+            style={{ objectFit: "contain", marginRight: 10 }}
+            src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${id}.png`}
+            alt="logo"
+            width={30}
+            height={30}
+          />
+          {crypto.name}
+        </h3>
+        <p>{new Date(crypto.date_added).toDateString()}</p>
+        <p>Rank: {crypto.cmc_rank}</p>
+      </div>
       <ChartLine
         data={quotes}
         change="price"

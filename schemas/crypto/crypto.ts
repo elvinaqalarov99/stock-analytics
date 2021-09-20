@@ -7,6 +7,7 @@ const CryptoSchema = new Schema<ICrypto>(
   {
     id: { type: Number, required: true },
     name: { type: String, required: true },
+    symbol: { type: String, required: true },
     circulating_supply: { type: Number, required: true },
     date_added: { type: String, required: true },
     cmc_rank: { type: Number, required: true },

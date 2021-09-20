@@ -7,9 +7,17 @@ const Home = () => {
 
   return (
     <>
-      <div className="row">
+      <div className="row" id="home">
         {state.cryptos.map((crypto: ICrypto) => (
-          <Card key={crypto.id} name={crypto.name} id={crypto.id} />
+          <Card
+            key={crypto.id}
+            name={crypto.name}
+            symbol={crypto.symbol}
+            id={crypto.id}
+            cmc={crypto.cmc_rank}
+            date_added={crypto.date_added}
+            circulating_supply={crypto.circulating_supply}
+          />
         ))}
       </div>
     </>

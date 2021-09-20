@@ -13,10 +13,15 @@ export default function Init({ children }: IChildren) {
   const { dispatch } = useStateManagement();
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
+    let isMounted = true;
+
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(URLS.cryptos.base);
+        const response = await axios.get(URLS.cryptos.base, {
+          cancelToken: source.token,
+        });
         if (response.status === 200 && response.data) {
           dispatch(Actions.setCryptos(response.data));
         } else {
@@ -27,9 +32,11 @@ export default function Init({ children }: IChildren) {
           );
         }
       } catch (e: any) {
-        setErrors([e.message]);
+        if (!axios.isCancel(e)) {
+          setErrors([e.message]);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
     if (loading) {
@@ -40,7 +47,11 @@ export default function Init({ children }: IChildren) {
       fetchData();
     }, 1000 * 60 * 8);
 
-    return () => clearInterval(interval);
+    return () => {
+      source.cancel();
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, [dispatch, loading]);
 
   return loading ? (

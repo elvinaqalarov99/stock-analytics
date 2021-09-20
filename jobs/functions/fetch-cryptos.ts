@@ -37,6 +37,7 @@ export default () => {
           element?.cmc_rank,
           element?.date_added,
           element?.name,
+          element?.symbol,
           element?.circulating_supply
         );
 

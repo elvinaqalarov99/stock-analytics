@@ -7,8 +7,11 @@ body {
   text-decoration: none !important;
   font-family: "Poppins";
   vertical-align: baseline;
-  color: $color;
   list-style: none !important;
+}
+
+h3 {
+  color: rgba(0, 212, 255, 1);
 }
 
 .disabled-link {
