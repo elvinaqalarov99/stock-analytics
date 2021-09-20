@@ -45,7 +45,7 @@ export default function Init({ children }: IChildren) {
 
     const interval = setInterval(() => {
       fetchData();
-    }, 1000 * 60 * 8);
+    }, 1000 * 60 * 3);
 
     return () => {
       source.cancel();
