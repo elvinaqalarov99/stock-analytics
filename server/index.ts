@@ -30,9 +30,9 @@ mongoose
     fetchCryptosHandler();
     deleteOldQuotesHanlder();
   })
-  .catch((err: any) =>
-    new Logger().error("mongoose db connection - " + err.message)
-  );
+  .catch((err: any) => {
+    new Logger().error("mongoose db connection - " + err);
+  });
 
 app.use(helmet());
 app.use(cors());
