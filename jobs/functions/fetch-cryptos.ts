@@ -1,11 +1,11 @@
 import rp from "request-promise";
-import CryptoModel from "../models/crypto/crypto.model";
-import QuoteModel from "../models/quote/quote.model";
-import { ICrypto } from "../interfaces/crypto/crypto.interface";
-import { IQuote } from "../interfaces/quote/quote.interface";
-import { Crypto } from "../schemas/crypto/crypto";
-import { Quote } from "../schemas/quote/quote";
-import Logger from "../utils/logger";
+import CryptoModel from "../../models/crypto/crypto.model";
+import QuoteModel from "../../models/quote/quote.model";
+import { ICrypto } from "../../interfaces/crypto/crypto.interface";
+import { IQuote } from "../../interfaces/quote/quote.interface";
+import { Crypto } from "../../schemas/crypto/crypto";
+import { Quote } from "../../schemas/quote/quote";
+import Logger from "../../utils/logger";
 
 export default () => {
   const URL: string = process.env.COINMARKETCAP_URL || "";

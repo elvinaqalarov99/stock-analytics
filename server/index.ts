@@ -4,12 +4,9 @@ import cors from "cors";
 import helmet from "helmet";
 import cryptos from "../routes/crypto/cryptos";
 import quotes from "../routes/quote/quotes";
-
 import mongoose from "mongoose";
-import cron from "node-cron";
-import fetchCryptos from "../jobs/fetch-cryptos";
 import Logger from "../utils/logger";
-
+import { deleteOldQuotesHanlder, fetchCryptosHandler } from "../jobs/jobs";
 dotenv.config();
 
 if (!process.env.PORT) {
@@ -29,11 +26,11 @@ mongoose
       console.log("Running on PORT " + PORT);
     });
 
-    // cron.schedule("*/6 * * * *", () => {
-    //   fetchCryptos();
-    // });
+    // jobs to handle quotes and cryptos
+    fetchCryptosHandler();
+    deleteOldQuotesHanlder();
   })
-  .catch((err) => new Logger().error(err.message));
+  .catch((err: any) => new Logger().error(err.message));
 
 app.use(helmet());
 app.use(cors());
