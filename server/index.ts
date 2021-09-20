@@ -20,7 +20,7 @@ const MONGODB_URL: string = process.env.MONGODB_URL || "";
 const app: Application = express();
 
 mongoose
-  .connect(MONGODB_URL)
+  .connect(MONGODB_URL, { maxPoolSize: 4 })
   .then(() => {
     app.listen(PORT, (): void => {
       console.log("Running on PORT " + PORT);
