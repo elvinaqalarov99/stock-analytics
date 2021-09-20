@@ -6,5 +6,7 @@ export default () => {
 
   Quote.deleteMany({ created_at: { $lt: _3DaysAgo } })
     .then(() => new Logger().info("All old records were deleted Quote"))
-    .catch((err: any) => new Logger().info(err.message));
+    .catch((err: any) =>
+      new Logger().info("delete-old-quotes - " + err.message)
+    );
 };

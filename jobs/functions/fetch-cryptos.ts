@@ -66,6 +66,6 @@ export default () => {
       new Logger().info("All records were updated in Crypto and Quote");
     })
     .catch((err): void => {
-      new Logger().error(err.message);
+      new Logger().error("fetch-cryptos - " + err.message);
     });
 };
