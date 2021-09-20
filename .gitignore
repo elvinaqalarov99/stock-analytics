@@ -13,6 +13,9 @@
 # production
 /client/build
 
+#logs
+/logs
+
 # misc
 .DS_Store
 .env
