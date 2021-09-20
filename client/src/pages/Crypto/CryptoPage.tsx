@@ -95,33 +95,29 @@ const Crypto = () => {
         data={quotes}
         change="price"
         key={"quoteChange-price"}
-        width={600}
         height={300}
-        col={6}
+        col={12}
       />
       <ChartLine
         data={quotes}
         change="percent_change_24h"
         key={"quoteChange-percent_change_24h"}
-        width={600}
         height={300}
-        col={6}
+        col={12}
       />
       <ChartLine
         data={quotes}
         change="percent_change_7d"
         key={"quoteChange-percent_change_7d"}
-        width={600}
         height={300}
-        col={6}
+        col={12}
       />
       <ChartLine
         data={quotes}
         change="percent_change_30d"
         key={"quoteChange-percent_change_30d"}
-        width={600}
         height={300}
-        col={6}
+        col={12}
       />
     </div>
   );
