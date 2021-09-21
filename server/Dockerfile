@@ -1,9 +1,9 @@
-FROM node:14.17-alpine as client
+FROM node:14.17-alpine AS build
 
+RUN mkdir -p /usr/app/
 WORKDIR /usr/app/
 
 COPY package*.json ./
-
 RUN npm install
 COPY . .
 RUN npm run build
@@ -14,9 +14,8 @@ WORKDIR /usr/app/
 COPY package*.json .
 RUN npm install --production
 
-COPY --from=client /usr/app/build/ ./client/build/
+COPY --from=build /usr/app/dist/ dist/
 
-
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["npm","run","start"]

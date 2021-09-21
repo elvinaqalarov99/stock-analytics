@@ -7,7 +7,9 @@ let urls = {
   },
 };
 
-const root = "http://localhost:3001";
+const PORT = process.env.REACT_APP_PORT || 5000;
+
+export const root = "http://localhost:" + PORT;
 
 function addRootToUrls(obj: any) {
   Object.entries(obj).forEach(function ([key, value]) {

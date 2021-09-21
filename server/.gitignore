@@ -4,7 +4,8 @@
 /node_modules
 
 #logs
-/server/logs
+/src/logs
+/dist/logs
 
 # misc
 .DS_Store

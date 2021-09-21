@@ -3,7 +3,7 @@ import Spinner from "../Spinner/Spinner";
 import useStateManagement from "../../StateManagement/StateManagement";
 import Actions from "../../StateManagement/Actions";
 import { IChildren } from "../../interfaces/children.interface";
-import { URLS } from "./../../constants/urls";
+import { URLS, root } from "./../../constants/urls";
 import axios from "axios";
 import Fallback from "./Fallback/Fallback";
 
@@ -18,6 +18,7 @@ export default function Init({ children }: IChildren) {
 
     const fetchData = async () => {
       try {
+        console.log(root);
         setLoading(true);
         const response = await axios.get(URLS.cryptos.base, {
           cancelToken: source.token,
