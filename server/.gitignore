@@ -2,16 +2,6 @@
 
 # dependencies
 /node_modules
-/client/node_modules
-
-/.pnp
-.pnp.js
-
-# testing
-/client/coverage
-
-# production
-/client/build
 
 #logs
 /logs
