@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { URLS } from "../../constants/urls";
-import { IQuote } from "../../../../interfaces/quote/quote.interface";
+import { IQuote } from "../../interfaces/quote.interface";
 import Spinner from "../../components/Spinner/Spinner";
 import ChartLine from "../../components/Charts/ChartLine";
 import useStateManagement from "../../StateManagement/StateManagement";

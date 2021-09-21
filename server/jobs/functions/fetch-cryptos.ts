@@ -1,10 +1,10 @@
 import rp from "request-promise";
-import CryptoModel from "../../models/crypto/crypto.model";
-import QuoteModel from "../../models/quote/quote.model";
-import { ICrypto } from "../../interfaces/crypto/crypto.interface";
-import { IQuote } from "../../interfaces/quote/quote.interface";
-import { Crypto } from "../../schemas/crypto/crypto";
-import { Quote } from "../../schemas/quote/quote";
+import CryptoModel from "../../models/crypto.model";
+import QuoteModel from "../../models/quote.model";
+import { ICrypto } from "../../interfaces/crypto.interface";
+import { IQuote } from "../../interfaces/quote.interface";
+import { Crypto } from "../../schemas/crypto";
+import { Quote } from "../../schemas/quote";
 import Logger from "../../utils/logger";
 
 export default () => {
@@ -56,9 +56,9 @@ export default () => {
           baseQuote?.volume_24h
         );
 
-        new Crypto(crypto).save((err): void => {
+        new Crypto(crypto).save((err: any): void => {
           if (err) new Logger().error(err.message);
-          new Quote(quote).save((err): void => {
+          new Quote(quote).save((err: any): void => {
             if (err) new Logger().error(err.message);
           });
         });

@@ -70,5 +70,5 @@
     // "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["./node_modules", "client"],
-  "include": ["./server", "./interfaces", "./models"]
+  "include": ["./server"]
 }

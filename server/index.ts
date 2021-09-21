@@ -2,11 +2,11 @@ import express, { Application } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-import cryptos from "../routes/crypto/cryptos";
-import quotes from "../routes/quote/quotes";
+import cryptos from "./routes/cryptos";
+import quotes from "./routes/quotes";
 import mongoose from "mongoose";
-import Logger from "../utils/logger";
-import { deleteOldQuotesHanlder, fetchCryptosHandler } from "../jobs/jobs";
+import Logger from "./utils/logger";
+import { deleteOldQuotesHanlder, fetchCryptosHandler } from "./jobs/jobs";
 dotenv.config();
 
 if (!process.env.PORT) {

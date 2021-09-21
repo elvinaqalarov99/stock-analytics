@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { IQuote } from "../../interfaces/quote/quote.interface";
+import { IQuote } from "../interfaces/quote.interface";
 
 const Schema = mongoose.Schema;
 

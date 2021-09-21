@@ -1,6 +1,6 @@
 import moment from "moment";
-import { Quote } from "../../schemas/quote/quote";
-import Logger from "../../utils/logger";
+import { Quote } from "../schemas/quote";
+import Logger from "../utils/logger";
 
 export default () => {
   const _15DaysAgo = moment().subtract(15, "days").toDate();

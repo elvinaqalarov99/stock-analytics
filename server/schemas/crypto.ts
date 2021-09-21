@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ICrypto } from "../../interfaces/crypto/crypto.interface";
+import { ICrypto } from "../interfaces/crypto.interface";
 
 const Schema = mongoose.Schema;
 

@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from "express";
-import { Crypto } from "../../schemas/crypto/crypto";
+import { Crypto } from "../schemas/crypto";
 
 const router: Router = express.Router();
 

@@ -1,5 +1,5 @@
 import useStateManagement from "../../StateManagement/StateManagement";
-import { ICrypto } from "../../../../interfaces/crypto/crypto.interface";
+import { ICrypto } from "../../interfaces/crypto.interface";
 import Card from "../../components/Card/Card";
 
 const Home = () => {

@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from "express";
-import { Quote } from "../../schemas/quote/quote";
+import { Quote } from "../schemas/quote";
 
 const router: Router = express.Router();
 
