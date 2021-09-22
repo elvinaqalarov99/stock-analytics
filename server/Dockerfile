@@ -1,21 +1,12 @@
-FROM node:14.17-alpine AS build
-
-RUN mkdir -p /usr/app/
-WORKDIR /usr/app/
-
-COPY package*.json ./
-RUN npm install
+# Pull Docker Hub base image
+FROM node:12.17-alpine
+# Set working directory
+WORKDIR /usr/app
+# Install app dependencies
+COPY package.json ./
+COPY tsconfig.json ./
+RUN npm install -qy
+# Copy app to container
 COPY . .
-RUN npm run build
-
-FROM node:14.17-alpine
-WORKDIR /usr/app/
-
-COPY package*.json .
-RUN npm install --production
-
-COPY --from=build /usr/app/dist/ dist/
-
-EXPOSE 5000
-
-CMD ["npm","run","start"]
+# Run the "dev" script in package.json
+CMD ["npm", "run", "dev"]

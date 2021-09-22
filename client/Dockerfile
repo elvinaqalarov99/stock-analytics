@@ -1,22 +1,10 @@
-FROM node:14.17-alpine as client
-
-WORKDIR /usr/app/
-
-COPY package*.json ./
-
-RUN npm install
+FROM node:12.17-alpine
+# Set working directory
+WORKDIR /usr/app
+# Install app dependencies
+COPY package.json ./
+RUN npm install -qy
+# Copy app to container
 COPY . .
-RUN npm run build
-
-FROM node:14.17-alpine
-WORKDIR /usr/app/
-
-COPY package*.json .
-RUN npm install --production
-
-COPY --from=client /usr/app/build/ ./client/build/
-
-
-EXPOSE 3000
-
-CMD ["npm","run","start"]
+# Run the "dev" script in package.json
+CMD ["npm", "run", "dev"]

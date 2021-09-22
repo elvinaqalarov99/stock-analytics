@@ -16,13 +16,13 @@ if (!process.env.PORT) {
 
 const PORT: number = +process.env.PORT || 5000;
 
-const CLIENT_BUILD_PATH = path.join(__dirname, "../../client/build");
+// const CLIENT_BUILD_PATH = path.join(__dirname, "./build");
 
 const MONGODB_URL: string = process.env.MONGODB_URL || "";
 
 const app: Application = express();
 
-app.use(express.static(CLIENT_BUILD_PATH));
+// app.use(express.static(CLIENT_BUILD_PATH));
 
 mongoose
   .connect(MONGODB_URL, { maxPoolSize: 4 })
@@ -47,6 +47,6 @@ app.use(express.json());
 app.use("/api/cryptos", cryptos);
 app.use("/api/quotes", quotes);
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
+// });
