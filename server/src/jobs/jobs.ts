@@ -4,7 +4,7 @@ import deleteOldQuotes from "./functions/delete-old-quotes";
 
 // run every 6 minutes
 export const fetchCryptosHandler = () =>
-  cron.schedule("*/6 * * * *", () => fetchCryptos());
+  cron.schedule("*/5 * * * *", () => fetchCryptos());
 
 // run every midnight
 export const deleteOldQuotesHanlder = () =>
