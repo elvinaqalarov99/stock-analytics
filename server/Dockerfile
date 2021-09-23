@@ -1,12 +1,11 @@
-# Pull Docker Hub base image
 FROM node:12.17-alpine
-# Set working directory
-WORKDIR /usr/app
-# Install app dependencies
+
+WORKDIR /server
+
 COPY package.json ./
 COPY tsconfig.json ./
-RUN npm install -qy
-# Copy app to container
+RUN npm install
+
 COPY . .
-# Run the "dev" script in package.json
+
 CMD ["npm", "run", "dev"]

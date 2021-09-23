@@ -3,8 +3,8 @@ import Spinner from "../Spinner/Spinner";
 import useStateManagement from "../../StateManagement/StateManagement";
 import Actions from "../../StateManagement/Actions";
 import { IChildren } from "../../interfaces/children.interface";
-import { URLS, root } from "./../../constants/urls";
-import axios from "axios";
+import { URLS } from "./../../constants/urls";
+import axios from "../../axios";
 import Fallback from "./Fallback/Fallback";
 
 export default function Init({ children }: IChildren) {
@@ -13,16 +13,12 @@ export default function Init({ children }: IChildren) {
   const { dispatch } = useStateManagement();
 
   useEffect(() => {
-    const source = axios.CancelToken.source();
     let isMounted = true;
 
     const fetchData = async () => {
       try {
-        console.log(root);
         setLoading(true);
-        const response = await axios.get(URLS.cryptos.base, {
-          cancelToken: source.token,
-        });
+        const response = await axios.get(URLS.cryptos.base);
         if (response.status === 200 && response.data) {
           dispatch(Actions.setCryptos(response.data));
         } else {
@@ -33,9 +29,7 @@ export default function Init({ children }: IChildren) {
           );
         }
       } catch (e: any) {
-        if (!axios.isCancel(e)) {
-          setErrors([e.message]);
-        }
+        setErrors([e.message]);
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -49,7 +43,6 @@ export default function Init({ children }: IChildren) {
     }, 1000 * 60 * 3);
 
     return () => {
-      source.cancel();
       isMounted = false;
       clearInterval(interval);
     };

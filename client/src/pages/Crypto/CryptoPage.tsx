@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { URLS } from "../../constants/urls";
@@ -23,15 +23,12 @@ const Crypto = () => {
   const [quotes, setQuotes] = useState<IQuote[]>([]);
 
   useEffect(() => {
-    const source = axios.CancelToken.source();
     let isMounted = true;
 
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(URLS.quotes.base + id, {
-          cancelToken: source.token,
-        });
+        const response = await axios.get(URLS.quotes.base + id);
         if (response.status === 200 && response.data) {
           setQuotes(response.data);
         } else {
@@ -42,9 +39,7 @@ const Crypto = () => {
           );
         }
       } catch (e: any) {
-        if (!axios.isCancel(e)) {
-          setErrors([e.message]);
-        }
+        setErrors([e.message]);
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -59,7 +54,6 @@ const Crypto = () => {
     }, 1000 * 60 * 3);
 
     return () => {
-      source.cancel();
       isMounted = false;
       clearInterval(interval);
     };
